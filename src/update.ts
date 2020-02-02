@@ -1,5 +1,6 @@
 import { cachedJson } from "./helpers/fetch";
 import { generateEmailRecords } from "./helpers/emails";
+import { getDnsRecords } from "./helpers/cloudflare";
 
 export const update = async () => {
   const emails: {
@@ -9,11 +10,13 @@ export const update = async () => {
   );
   const emailRecords = generateEmailRecords(emails);
 
-  const cname: {
-    [index: string]: string;
-  } = await cachedJson(
-    "https://raw.githubusercontent.com/TwenteMe/data/master/cname.json"
-  );
+  // const cname: {
+  //   [index: string]: string;
+  // } = await cachedJson(
+  //   "https://raw.githubusercontent.com/TwenteMe/data/master/cname.json"
+  // );
 
-  return { emailRecords, cname };
+  // const dnsRecords = await getDnsRecords();
+
+  return { emailRecords };
 };
