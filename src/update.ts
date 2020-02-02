@@ -32,6 +32,7 @@ export const update = async () => {
     dnsRecords.emailRecords,
     emailRecords
   );
+  logEvent("emailRecordsDelta", emailRecordsDelta);
   for await (const record of emailRecordsDelta.recordsToRemove)
     await removeDnsRecord(record);
   for await (const record of emailRecordsDelta.recordsToAdd)
@@ -41,6 +42,7 @@ export const update = async () => {
     dnsRecords.cnameRecords,
     cname
   );
+  logEvent("cnameRecordsDelta", cnameRecordsDelta);
   for await (const record of cnameRecordsDelta.recordsToRemove)
     await removeDnsRecord(record);
   for await (const record of cnameRecordsDelta.recordsToAdd)
