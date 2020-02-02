@@ -1,7 +1,8 @@
 import axios from "axios";
 import { logEvent, getLog } from "./logger";
 
-const REPO = "TwenteMe/data";
+const BOT_REPO = "TwenteMe/bot";
+const DATA_REPO = "TwenteMe/data";
 const requestHeaders = {
   headers: {
     "User-Agent": "TwenteBot",
@@ -13,7 +14,7 @@ const requestHeaders = {
 
 const getMostRecentCommit = async () => {
   const commits = await axios.get(
-    `https://api.github.com/repos/${REPO}/commits`,
+    `https://api.github.com/repos/${DATA_REPO}/commits`,
     {
       headers: {
         "User-Agent": "TwenteBot",
@@ -33,7 +34,7 @@ export const updateStatus = async () => {
 
   const content = getLog();
   await axios.put(
-    `https://api.github.com/repos/${REPO}/contents/${logFilePath}`,
+    `https://api.github.com/repos/${BOT_REPO}/contents/${logFilePath}`,
     {
       message: ":loud_sound: Add bot logs",
       content: Buffer.from(content).toString("base64")
@@ -43,7 +44,7 @@ export const updateStatus = async () => {
 
   const sha = await getMostRecentCommit();
   await axios.post(
-    `https://api.github.com/repos/${REPO}/statuses/${sha}`,
+    `https://api.github.com/repos/${DATA_REPO}/statuses/${sha}`,
     {
       state: "success",
       target_url: logFileHtmlUrl,
