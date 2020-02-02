@@ -37,7 +37,8 @@ export const addCnameRecord = async (record: [string, string]) => {
     type: "CNAME",
     name: record[0],
     content: record[1],
-    ttl: 1
+    ttl: 1,
+    proxied: true
   });
 };
 
