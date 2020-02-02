@@ -9,9 +9,9 @@
     "local": "now dev"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "cloudflare": "^2.7.0",
-    "fs-extra": "^8.1.0",
-    "got": "^10.4.0"
+    "fs-extra": "^8.1.0"
   },
   "devDependencies": {
     "@now/node": "^1.2.0",

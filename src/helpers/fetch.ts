@@ -1,4 +1,4 @@
-import got from "got";
+import axios from "axios";
 import { ensureDir, readJson, writeJson } from "fs-extra";
 import { join } from "path";
 import { urlToCache } from "./utils";
@@ -11,8 +11,8 @@ export const cachedJson = async (url: string) => {
     if (cachedResult) return cachedResult;
   } catch {}
   console.log(`Fetching  ${url}`);
-  const response = await got(url);
-  const body = JSON.parse(response.body);
+  const response = await axios(url);
+  const body = response.data;
   await writeJson(cachePath, body);
   return body;
 };
