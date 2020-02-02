@@ -1,0 +1,4 @@
+2020-02-02T14:44:47.166Z Started update
+2020-02-02T14:44:47.170Z Fetching https://raw.githubusercontent.com/TwenteMe/data/master/emails.json
+2020-02-02T14:44:47.325Z Fetching https://raw.githubusercontent.com/TwenteMe/data/master/cname.json
+2020-02-02T14:44:47.694Z https://github.com/TwenteMe/bot/blob/master/logs/2020-02-02T14:44:47.694Z.txtCreating log file
