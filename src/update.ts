@@ -1,11 +1,19 @@
 import { cachedJson } from "./helpers/fetch";
-import { generateRestrictedList } from "./helpers/restricted";
+import { generateEmailRecords } from "./helpers/emails";
 
 export const update = async () => {
-  const restrictedUrls: string[] = generateRestrictedList(
-    await cachedJson(
-      "https://raw.githubusercontent.com/TwenteMe/data/master/restricted.json"
-    )
+  const emails: {
+    [index: string]: string | string[];
+  } = await cachedJson(
+    "https://raw.githubusercontent.com/TwenteMe/data/master/emails.json"
   );
-  return { restrictedUrls };
+  const emailRecords = generateEmailRecords(emails);
+
+  const cname: {
+    [index: string]: string;
+  } = await cachedJson(
+    "https://raw.githubusercontent.com/TwenteMe/data/master/cname.json"
+  );
+
+  return { emailRecords, cname };
 };
