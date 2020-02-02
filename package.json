@@ -8,9 +8,13 @@
     "lint": "prettier '**/*.ts' --write",
     "local": "now dev"
   },
-  "dependencies": {},
+  "dependencies": {
+    "fs-extra": "^8.1.0",
+    "got": "^10.4.0"
+  },
   "devDependencies": {
     "@now/node": "^1.2.0",
+    "@types/fs-extra": "^8.0.1",
     "husky": "^3.1.0",
     "prettier": "^1.19.1"
   },
