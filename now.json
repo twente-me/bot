@@ -1,0 +1,5 @@
+{
+  "env": {
+    "TWENTEBOT_ACCESS_TOKEN": "@twentebot_access_token"
+  }
+}
