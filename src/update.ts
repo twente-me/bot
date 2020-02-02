@@ -7,6 +7,7 @@ import {
   addCnameRecord,
   removeDnsRecord
 } from "./helpers/cloudflare";
+import { updateStatus } from "./helpers/github";
 
 export const update = async () => {
   const emails: {
@@ -41,6 +42,8 @@ export const update = async () => {
     await removeDnsRecord(record);
   for await (const record of cnameRecordsDelta.recordsToAdd)
     await addCnameRecord(record);
+
+  await updateStatus();
 
   return { emailRecordsDelta, cnameRecordsDelta };
 };
