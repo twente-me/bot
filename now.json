@@ -1,5 +1,8 @@
 {
   "env": {
-    "TWENTEBOT_ACCESS_TOKEN": "@twentebot_access_token"
+    "TWENTEBOT_ACCESS_TOKEN": "@twentebot_access_token",
+    "TWENTEME_ZONE_ID": "@twenteme_zone_id",
+    "TWENTEME_ACCOUNT_ID": "@TWENTEME_ACCOUNT_ID",
+    "TWENTEME_API_KEY": "@TWENTEME_API_KEY"
   }
 }
