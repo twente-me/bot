@@ -1,4 +1,5 @@
 import cloudflare from "cloudflare";
+import axios from "axios";
 import { DnsRecord } from "./interfaces";
 import { logEvent } from "./logger";
 
@@ -8,6 +9,30 @@ const cf = cloudflare({
 
 export const getStatus = async () => {
   return await cf.zones.read(process.env.TWENTEME_ZONE_ID);
+};
+
+export const getAnalytics = async () => {
+  return (
+    await axios.post(
+      "https://api.cloudflare.com/client/v4/graphql",
+      {
+        query: `
+    query {
+      viewer {
+        zones(filter: {zoneTag: "${process.env.TWENTEME_ZONE_ID}"}) {
+        }
+      }
+    }
+    `
+      },
+      {
+        headers: {
+          "X-AUTH-EMAIL": process.env.CLOUDFLARE_EMAIL,
+          "X-AUTH-KEY": process.env.CLOUDFLARE_API_KEY
+        }
+      }
+    )
+  ).data;
 };
 
 export const getDnsRecords = async () => {

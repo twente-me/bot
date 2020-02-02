@@ -4,6 +4,8 @@
     "TWENTEBOT_KEY": "@twentebot_key",
     "TWENTEME_ZONE_ID": "@twenteme_zone_id",
     "TWENTEME_ACCOUNT_ID": "@twenteme_account_id",
-    "TWENTEME_API_KEY": "@twenteme_api_key"
+    "TWENTEME_API_KEY": "@twenteme_api_key",
+    "CLOUDFLARE_EMAIL": "@cloudflare_email",
+    "CLOUDFLARE_API_KEY": "@cloudflare_api_key"
   }
 }
