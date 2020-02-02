@@ -1,4 +1,6 @@
 import axios from "axios";
+import { logEvent } from "./logger";
+
 const REPO = "TwenteMe/data";
 
 const getMostRecentCommit = async () => {
@@ -17,6 +19,7 @@ const getMostRecentCommit = async () => {
 };
 
 export const updateStatus = async () => {
+  logEvent("Updating GitHub status");
   const sha = await getMostRecentCommit();
   const url = "";
   await axios.post(

@@ -1,5 +1,6 @@
 import cloudflare from "cloudflare";
 import { DnsRecord } from "./interfaces";
+import { logEvent } from "./logger";
 
 const cf = cloudflare({
   token: process.env.TWENTEME_API_KEY
@@ -21,7 +22,7 @@ export const getDnsRecords = async () => {
 };
 
 export const addEmailRecord = async (record: string) => {
-  console.log("Adding email record", record);
+  logEvent("Adding email record", record);
   await cf.dnsRecords.add(process.env.TWENTEME_ZONE_ID, {
     type: "TXT",
     name: "@",
@@ -31,7 +32,7 @@ export const addEmailRecord = async (record: string) => {
 };
 
 export const addCnameRecord = async (record: [string, string]) => {
-  console.log("Adding CNAME record", record);
+  logEvent("Adding CNAME record", record);
   await cf.dnsRecords.add(process.env.TWENTEME_ZONE_ID, {
     type: "CNAME",
     name: record[0],
@@ -41,6 +42,6 @@ export const addCnameRecord = async (record: [string, string]) => {
 };
 
 export const removeDnsRecord = async (record: DnsRecord) => {
-  console.log("Removing DNS record", record.name, record.content);
+  logEvent("Removing DNS record", record.name, record.content);
   await cf.dnsRecords.del(process.env.TWENTEME_ZONE_ID, record.id);
 };

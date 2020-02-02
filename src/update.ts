@@ -8,8 +8,11 @@ import {
   removeDnsRecord
 } from "./helpers/cloudflare";
 import { updateStatus } from "./helpers/github";
+import { logEvent } from "./helpers/logger";
 
 export const update = async () => {
+  logEvent("Started update");
+
   const emails: {
     [index: string]: string | string[];
   } = await cachedJson(
@@ -45,5 +48,6 @@ export const update = async () => {
 
   await updateStatus();
 
+  logEvent("Completed update");
   return { emailRecordsDelta, cnameRecordsDelta };
 };
