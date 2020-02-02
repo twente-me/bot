@@ -9,6 +9,7 @@
     "local": "now dev"
   },
   "dependencies": {
+    "cloudflare": "^2.7.0",
     "fs-extra": "^8.1.0",
     "got": "^10.4.0"
   },
