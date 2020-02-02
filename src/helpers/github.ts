@@ -1,7 +1,15 @@
 import axios from "axios";
-import { logEvent } from "./logger";
+import { logEvent, getLog } from "./logger";
 
 const REPO = "TwenteMe/data";
+const requestHeaders = {
+  headers: {
+    "User-Agent": "TwenteBot",
+    Authorization: `token ${process.env.TWENTEBOT_ACCESS_TOKEN}`,
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  }
+};
 
 const getMostRecentCommit = async () => {
   const commits = await axios.get(
@@ -19,24 +27,29 @@ const getMostRecentCommit = async () => {
 };
 
 export const updateStatus = async () => {
-  logEvent("Updating GitHub status");
+  const logFilePath = `logs/${new Date().toISOString()}.txt`;
+  const logFileHtmlUrl = `https://github.com/TwenteMe/bot/blob/master/${logFilePath}`;
+  logEvent("Creating log file", logFileHtmlUrl);
+
+  const content = getLog();
+  await axios.put(
+    `https://api.github.com/repos/${REPO}/contents/${logFilePath}`,
+    {
+      message: ":loud_sound: Add bot logs",
+      content: Buffer.from(content).toString("base64")
+    },
+    requestHeaders
+  );
+
   const sha = await getMostRecentCommit();
-  const url = "";
   await axios.post(
     `https://api.github.com/repos/${REPO}/statuses/${sha}`,
     {
       state: "success",
-      target_url: url,
+      target_url: logFileHtmlUrl,
       description: "Updated Cloudflare DNS",
       context: "TwenteBot"
     },
-    {
-      headers: {
-        "User-Agent": "TwenteBot",
-        Authorization: `token ${process.env.TWENTEBOT_ACCESS_TOKEN}`,
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    }
+    requestHeaders
   );
 };
