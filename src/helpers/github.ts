@@ -54,3 +54,46 @@ export const updateStatus = async () => {
     requestHeaders
   );
 };
+
+export const readGitHubFile = async (path: string) => {
+  const currentContents = await axios.get(
+    `https://api.github.com/repos/${DATA_REPO}/contents/${path}`,
+    requestHeaders
+  );
+  return currentContents.data;
+};
+
+export const updateGitHubFile = async (
+  path: string,
+  message: string,
+  content: string
+) => {
+  const currentContents = await axios.get(
+    `https://api.github.com/repos/${DATA_REPO}/contents/${path}`,
+    requestHeaders
+  );
+  await axios.put(
+    `https://api.github.com/repos/${DATA_REPO}/contents/${path}`,
+    {
+      message,
+      content: Buffer.from(content).toString("base64"),
+      sha: currentContents.data.sha
+    },
+    requestHeaders
+  );
+};
+
+export const writeGitHubFile = async (
+  path: string,
+  message: string,
+  content: string
+) => {
+  await axios.put(
+    `https://api.github.com/repos/${DATA_REPO}/contents/${path}`,
+    {
+      message,
+      content: Buffer.from(content).toString("base64")
+    },
+    requestHeaders
+  );
+};

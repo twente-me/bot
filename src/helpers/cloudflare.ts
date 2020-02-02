@@ -11,19 +11,62 @@ export const getStatus = async () => {
   return await cf.zones.read(process.env.TWENTEME_ZONE_ID);
 };
 
+const safeDate = (date: number) => (date > 9 ? date.toString() : `0${date}`);
 export const getAnalytics = async () => {
+  const thisMonth = new Date();
+  thisMonth.setDate(1);
+  thisMonth.setHours(-1);
   return (
     await axios.post(
       "https://api.cloudflare.com/client/v4/graphql",
       {
-        query: `
-    query {
-      viewer {
-        zones(filter: {zoneTag: "${process.env.TWENTEME_ZONE_ID}"}) {
-        }
-      }
-    }
-    `
+        query: `query {
+          viewer {
+            zones(filter: {zoneTag: "${process.env.TWENTEME_ZONE_ID}"}) {
+              httpRequests1dGroups(
+                orderBy: [date_ASC],
+                limit: 5
+                filter: { date_gt: "${thisMonth.getUTCFullYear()}-${safeDate(
+          thisMonth.getUTCMonth() + 1
+        )}-${safeDate(thisMonth.getUTCDate())}" }) {
+                  dimensions {
+                    date
+                  }
+                  sum {
+                  browserMap {
+                    pageViews
+                    uaBrowserFamily
+                  }
+                  bytes
+                  cachedBytes
+                  cachedRequests
+                  contentTypeMap {
+                    bytes
+                    requests
+                    edgeResponseContentTypeName
+                  }
+                  countryMap {
+                    bytes
+                    requests
+                    threats
+                    clientCountryName
+                  }
+                  encryptedBytes
+                  encryptedRequests
+                  pageViews
+                  requests
+                  responseStatusMap {
+                    requests
+                    edgeResponseStatus
+                  }
+                }
+                uniq {
+                  uniques
+                }
+              }
+            }
+          }
+        }`
       },
       {
         headers: {
@@ -32,7 +75,7 @@ export const getAnalytics = async () => {
         }
       }
     )
-  ).data;
+  ).data.data.viewer.zones[0].httpRequests1dGroups;
 };
 
 export const getDnsRecords = async () => {
