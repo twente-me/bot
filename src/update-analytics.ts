@@ -23,11 +23,11 @@ const months = [
 export const updateAnalytics = async () => {
   const filePath = `analytics/${new Date().getUTCFullYear()}-${
     months[new Date().getUTCMonth()]
-  }`;
+  }.json`;
   const message = `:card_file_box: Update analytics for ${new Date().toLocaleDateString(
     "en",
     { year: "numeric", month: "long" }
-  )}.json`;
+  )}`;
   const content = JSON.stringify(await getAnalytics(), null, 2);
 
   let fileExists = false;
