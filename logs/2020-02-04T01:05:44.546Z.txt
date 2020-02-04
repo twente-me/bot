@@ -1,0 +1,6 @@
+2020-02-04T01:05:43.843Z Started update
+2020-02-04T01:05:43.843Z Fetching https://raw.githubusercontent.com/TwenteMe/data/master/emails.json
+2020-02-04T01:05:44.111Z Fetching https://raw.githubusercontent.com/TwenteMe/data/master/cname.json
+2020-02-04T01:05:44.546Z emailRecordsDelta {"recordsToAdd":[],"recordsToKeep":["forward-email=bot:anandchowdhary+twentebot@gmail.com","forward-email=contact:anandchowdhary+twenteme@gmail.com","forward-email=creates:anandchowdhary+twentecreates@gmail.com","forward-email=example-multiple:anandchowdhary+1@gmail.com","forward-email=example-multiple:anandchowdhary+2@gmail.com"],"recordsToRemove":[]}
+2020-02-04T01:05:44.546Z cnameRecordsDelta {"recordsToAdd":[],"recordsToKeep":["creates","license"],"recordsToRemove":[]}
+2020-02-04T01:05:44.546Z Creating log file https://github.com/TwenteMe/bot/blob/master/logs/2020-02-04T01:05:44.546Z.txt
