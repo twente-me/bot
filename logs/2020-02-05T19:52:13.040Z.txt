@@ -1,0 +1,7 @@
+2020-02-05T19:52:12.087Z Started update
+2020-02-05T19:52:12.087Z Fetching https://raw.githubusercontent.com/TwenteMe/data/master/emails.json
+2020-02-05T19:52:12.377Z Fetching https://raw.githubusercontent.com/TwenteMe/data/master/cname.json
+2020-02-05T19:52:12.787Z emailRecordsDelta {"recordsToAdd":[],"recordsToKeep":["forward-email=bot:anandchowdhary+twentebot@gmail.com","forward-email=contact:anandchowdhary+twenteme@gmail.com","forward-email=creates:anandchowdhary+twentecreates@gmail.com","forward-email=example-multiple:anandchowdhary+1@gmail.com","forward-email=example-multiple:anandchowdhary+2@gmail.com"],"recordsToRemove":[]}
+2020-02-05T19:52:12.787Z cnameRecordsDelta {"recordsToAdd":[["go","go-twente.netlify.com"]],"recordsToKeep":["creates","license"],"recordsToRemove":[]}
+2020-02-05T19:52:12.787Z Adding CNAME record ["go","go-twente.netlify.com"]
+2020-02-05T19:52:13.040Z Creating log file https://github.com/TwenteMe/bot/blob/master/logs/2020-02-05T19:52:13.040Z.txt
