@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@now/node": "^1.8.5",
-    "@types/fs-extra": "^9.0.4",
+    "@types/fs-extra": "^9.0.5",
     "husky": "^4.3.5",
     "prettier": "^2.2.1"
   },
